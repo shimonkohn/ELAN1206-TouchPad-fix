@@ -1,0 +1,14 @@
+[Unit]
+Description=Persistent evtest monitoring
+After=network.target
+
+[Service]
+ExecStart=/usr/local/bin/touchpad-monitor
+Restart=on-failure
+RestartSec=5
+User=root
+Group=root
+
+[Install]
+WantedBy=multi-user.target
+
