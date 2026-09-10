@@ -58,6 +58,11 @@ The program finds the touchpad by its input device name, derives the DMA
 device from the touchpad's sysfs path, waits for the device to appear at
 boot, re-discovers it if it disappears (for example after suspend), and
 re-binds `idma64.1` when stopped so the system is left in its stock state.
+While the touchpad is in use it only checks for activity once per idle
+period rather than waking on every report, so it stays off the CPU that is
+busy with the interrupt storm. Note that `top` can still show it using CPU:
+without `CONFIG_IRQ_TIME_ACCOUNTING` the kernel bills interrupt time to
+whatever task happens to be running on that CPU.
 
 ## Install
 
